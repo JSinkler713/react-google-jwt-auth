@@ -12,7 +12,7 @@ function App(props) {
     console.log('use effect happened')
     var query = queryString.parse(location.search);
     if (query.token) {
-      window.localStorage.setItem("jwt", query.token);
+      window.localStorage.setItem("jwtToken", `Bearer ${query.token}`);
       history.push("/");
    }
   }, [])
@@ -20,7 +20,7 @@ function App(props) {
   const getProfileInfo = ()=> {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('jwtToken')
     console.log(token)
     //add the jwt token to header
     myHeaders.append('Authorization', token);
